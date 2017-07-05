@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slugs');
@@ -23,7 +24,7 @@ storeSchema.pre('save', function(next) {
   }
   this.slug = slug(this.name);
   next();
-  // TODO make more resiliant so slugs are unique
+  // TODO make more resilient so slugs are unique
 });
 
 module.exports = mongoose.model('Store', storeSchema);
