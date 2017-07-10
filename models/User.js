@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 const md5 = require('md5');
 const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
-const passportLocalMongoose = require('password-local-mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new Schema({
   email: {
@@ -14,10 +14,10 @@ const userSchema = new Schema({
     trim: true,
     validate: [validator.isEmail, "Invalid Email Address"],
     required: "Please enter your email"
-  }
-  name:{
+  },
+  name: {
     type:String,
-    required: "Please enter your name"
+    required: "Please enter your name",
     trim:true
   }
 })
