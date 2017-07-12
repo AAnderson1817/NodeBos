@@ -139,3 +139,21 @@ exports.mapStores = async (req, res) => {
   const stores = await Store.find(q).select('slug name description location').limit(10);
   res.json(stores);
 };
+
+exports.mapStores = async(req,res) =>{
+  const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
+  const q = {
+    location: {
+      $near: {   //$near is built-in to MongoDB. Great tool.
+        $geometry:{
+          type: 'Point',
+          coordinates  //Using ES6 syntax. ES5 would be coordinates: coordinates
+        },
+        $maxDistance: 10000 // Measured in meters. 10km for example.
+      }
+    }
+  };
+
+  const stores = await Store.find(q).select('slug name description location').limit(10);
+  res.json(stores);
+};
