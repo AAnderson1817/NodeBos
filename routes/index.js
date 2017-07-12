@@ -57,6 +57,7 @@ authController.confirmedPasswords,
 catchErrors(authController.update)
 );
 router.get('/map', storeController.mapPage);
+router.get('/hearts', authController.isLoggedIn, catchErrors(storeController.getHearts));
 
 /*
 API
